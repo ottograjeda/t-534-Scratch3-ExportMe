@@ -1,0 +1,16 @@
+/* #page{
+  display: none;
+}
+*/
+.loading{
+  font-size: 12px;
+  font-color: white;
+  background-color: white;
+  text-align: center;
+  letter-spacing: 2px;
+  margin-top: 30px;
+  /* 
+  display: inline;
+  position: fixed;
+  */
+}
