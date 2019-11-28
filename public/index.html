@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Scratch 3.0 ExportMe</title>
+<title>Scratch 3: ExportMe</title>
 <meta name="description" content="A Tool to Export a Scratch 3.0 project to HTML/JavaScript"/>
 <noscript><meta http-equiv='refresh' content='0; url=https://grajeda.com/error/no-js.html' /></noscript>
 
@@ -16,6 +16,10 @@ function loadNoShow(){console.log("done loading"),document.getElementById("loadM
 <style>
 .loading{font-size:12px;font-color:#fff;background-color:#fff;text-align:center;letter-spacing:2px;margin-top:30px}
 </style>
+
+<style>
+input.error,select.error,textarea.error{outline:0;border:1px solid red}input.error:valid,select.error:valid,textarea.error:valid{border-style:auto;border-color:inherit}
+</style> 
 
 <style>
 html{text-align:left;font-family:Arial,Helvetica,sans-serif;font-size:16pt;line-height:1.6}@media screen and (min-width:320px){html{text-align:left;font-family:Arial,Helvetica,sans-serif;font-size:calc(16px + 6 * ((100vw - 320px)/ 680));line-height:1.6}}@media screen and (min-width:750px){html{text-align:left;font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:1.6}}@media all and (min-width:551px){.mobile-br{display:inline}}@media all and (max-width:550px){.mobile-br{display:block;padding-top:10px!important;padding-bottom:10px!important}}.container{margin:0 auto;max-width:700px}
@@ -54,19 +58,24 @@ function loadIt(){loadShow();var o=setInterval(function(){console.log("checking.
 </script>
 
 <script>
-const userId = 'aScratchUser'; const DESIRED_USERNAME = ''; const PROJECT_JSON = ''; const ASSETS = {};
+const userId = 'aScratchUser'; const DESIRED_USERNAME = ''; const PROJECT_JSON = ''; const ASSETS = {}; var callMe = 'no';
 </script>
 
-<script type="module" src="./scratch-vm-exportMe.min.js"></script>
+<script type="module" src="./scratch-vm-exportMe.raw.js"></script>
 
 <!-- ********************************************************************** -->
 
 <script type="module">
-console.log('@ HTML... loaded VM')
+console.log('@ HTML... loading VM')
 var vm = new window.VirtualMachine();
+window.wrapperCallMe = (callMe) => { 
+console.log('call me = ' +callMe)
 window.runBenchmark = (() => {
+  console.log('@ set benchmark')
   const collecteyData = {assets: {}};
+
   const getProjectUrl = function (asset) {
+  console.log('@ run getProjectUrl')
   const assetIdParts = asset.assetId.split('.');
   const assetUrlParts = ['https://projects.scratch.mit.edu/', assetIdParts[0]];
   if (assetIdParts[1]) {
@@ -75,6 +84,7 @@ window.runBenchmark = (() => {
   return collecteyData.projectJSON = assetUrlParts.join('');
   };
   const getAssetUrl = function (asset) {
+  console.log('@ run getAssetUrl')
   const assetUrlParts = [
       'https://cdn.assets.scratch.mit.edu/',
       'internalapi/asset/',
@@ -86,6 +96,7 @@ window.runBenchmark = (() => {
   return collecteyData.assets[asset.assetId] = assetUrlParts.join('');
   };
   const runBenchmark = function (id) {
+  console.log('@ run benchmark')
   return new Promise(res => {
   const storage = new ScratchStorage(); 
   const AssetType = storage.AssetType;
@@ -96,16 +107,17 @@ window.runBenchmark = (() => {
   vm.on('workspaceUpdate', () => {
       res(collecteyData);
   });
-  vm.start();
+  //vm.start();
   });
-};
-return runBenchmark;
-})(); 
+  };
+  return runBenchmark;
+  })(); 
+}
 </script>
 
 <!-- ********************************************************************** -->
 
-<h1>Scratch 3.0 ExportMe</h1>
+<h1>Scratch 3: ExportMe</h1>
 <hr>
 
 <h3><em>Export a Scratch 3.0 project to HTML/JavaScript</em></h3>
@@ -123,20 +135,26 @@ the exported project will automatically start (there are no Scratch controls).</
 
 <hr>
 
-<p><label for="title">Project title: </label><input type="text" placeholder="Project title" value="Clicker Balloon" id="title" title="Text to display in the page tab"></p>
-<p><label for="id">Project ID: </label><input type="number" placeholder="Project ID" value="283076965" id="id" title="ID of the project hosted on the Scratch website to convert"></p>
+<form id="exportForm">
+<ul class="errorMessages"></ul>
+<p>Please enter a Project Title & Id. Example: Clicker, 283076965
+<p><label for="title">Title: </label> <input type="text" id="title" placeholder="Project title - example Clicker" pattern="[a-zA-Z0-9]+" minlength="1" maxlength="20" size="35" required /> <small><i>* required - Text Title to display in the page tab</i></small> </p>
+<p><label for="id">ID: &nbsp; </label> <input type="text" id="id" placeholder="Project ID - example 283076965" pattern="[0-9]{9}" minlength="9" maxlength="9" size="35" required /> <small><i>* required - Number ID of the Scratch project</i></small> </p>
+<input type=reset value="Clear Form" onClick="window.location.reload()">
+<input type="submit" id="load-all" value="ExportMe">
+<p>
+</form>
+<textarea style="max-width: 98%; max-height: 200px;" id="error" rows="8" cols="55" placeholder="Tool feedback will go here" readonly></textarea>
+<br>
 
-<button id="load-all">ExportMe</button>
-
-<br><p>
-
-<textarea style="max-width: 99%; max-height: 200px;"id="error" rows="8" cols="55" placeholder="Tool feedback will be shown here aka log" readonly></textarea>
+<hr>
 
 <p>
-Code upgrade to SheepMaker/Jeulibre. For technical details, view <a target="_blank" href="url_goes_here">Github Repo</a>.
+Inspired by SheepMaker & Jeulibre. For technical details, view <a target="_blank" href="https://github.com/ottograjeda/public_ticket.534">Github Repo</a>.
 <p>
 
 </div>
+
 
 <!-- ********************************************************************** -->
 
@@ -154,6 +172,11 @@ function getDataURL(url) {
 }
 function downloadAsHTML(id, {title = 'Project', userId = 'ExportedFile', noVM = false, minify = false, log = console.log}) {
   console.log('@ downloadAsHTML')
+  //console.log(window) // sanity check = show global
+  console.log('on press - call me pre ' +callMe)
+  callMe = 'yes'
+  console.log('on press - call me post ' +callMe)
+  wrapperCallMe(callMe);
   return runBenchmark(id).then(({assets, projectJSON}) => {
     log('Getting assets...');
     return Promise.all([
@@ -170,18 +193,20 @@ function downloadAsHTML(id, {title = 'Project', userId = 'ExportedFile', noVM = 
       ])
     .then(async ([scripts, html]) => {
       scripts = `const PROJECT_JSON = "${projectJSON}";\nconst ASSETS = ${JSON.stringify(assets)};\nconst DESIRED_USERNAME = ${JSON.stringify(userId)};\n` + scripts.replace('</scr' + 'ipt>', '');
-     
+      log('- - - - - - - - - - - -');
       log('Done!');
       console.log('Done!')
       return html.replace('{TITLE}', () => title).replace('{SCRIPTS}', () => scripts);
     });
-  });
-}
+  }); // end run
+} // end func
 const loadBtn = document.getElementById('load-all');
 const buttons = [loadBtn];
 const title = document.getElementById('title');
 const id = document.getElementById('id');
 const error = document.getElementById('error');
+var formOk = 'no'
+console.log('form ok ' +formOk);
 loadBtn.addEventListener('click', e => {
   console.clear();
   console.log('@ loadBtn')
