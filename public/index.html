@@ -67,13 +67,17 @@ const userId = 'aScratchUser'; const DESIRED_USERNAME = ''; const PROJECT_JSON =
 
 <script type="module">
 console.log('@ HTML... loading VM')
+console.log('call me ' +callMe)
+
+//if (callMe==='yes') {
 var vm = new window.VirtualMachine();
-window.wrapperCallMe = (callMe) => { 
-console.log('call me = ' +callMe)
+//window.wrapperCallMe = (callMe) => { 
+//console.log('call me = ' +callMe)
+
 window.runBenchmark = (() => {
+console.log('call me is = ' +callMe)
   console.log('@ set benchmark')
   const collecteyData = {assets: {}};
-
   const getProjectUrl = function (asset) {
   console.log('@ run getProjectUrl')
   const assetIdParts = asset.assetId.split('.');
@@ -82,7 +86,7 @@ window.runBenchmark = (() => {
       assetUrlParts.push(assetIdParts[1]);
   }
   return collecteyData.projectJSON = assetUrlParts.join('');
-  };
+  }; // end const
   const getAssetUrl = function (asset) {
   console.log('@ run getAssetUrl')
   const assetUrlParts = [
@@ -94,7 +98,7 @@ window.runBenchmark = (() => {
       '/get/'
   ];
   return collecteyData.assets[asset.assetId] = assetUrlParts.join('');
-  };
+  }; // end const
   const runBenchmark = function (id) {
   console.log('@ run benchmark')
   return new Promise(res => {
@@ -107,12 +111,13 @@ window.runBenchmark = (() => {
   vm.on('workspaceUpdate', () => {
       res(collecteyData);
   });
-  //vm.start();
-  });
-  };
+  vm.start();
+  }); // end promise
+  }; // end const
   return runBenchmark;
-  })(); 
-}
+  })(); // end window
+ //}// end if
+//} // end wrapper
 </script>
 
 <!-- ********************************************************************** -->
@@ -120,34 +125,32 @@ window.runBenchmark = (() => {
 <h1>Scratch 3: ExportMe</h1>
 <hr>
 
-<h3><em>Export a Scratch 3.0 project to HTML/JavaScript</em></h3>
+<h3><em>Export a Scratch 3 project to HTML/JavaScript</em></h3>
 
-<p>This exports a Scratch project into an HTML file. You then transfer this
-file to your favorite webhost (AWS, Firebase, Google, GitHub, etc.) where it
-can run on its own. 
+<p>This tool exports a Scratch project into an HTML file. You then transfer this
+file to your website where it can run on its own (when a user visits your page). 
 
-<p>NOTE 1: The HTML file will be big; it will contain all the assets used in the Scratch project.
-However, the exported file will NOT support Scratch Cloud Variables.</p>
+<p>NOTE 1: This tool only works on desktop browsers; see <a target="_blank" href="http://danml.com/download.html#Compatibility">compatibility</a> for details.</p>
 
-<p>NOTE 2: The file will include links to various software that is not part of the Scratch project.
-This includes a custom & minified Scratch virtual machine. When using the HTML file, 
-the exported project will automatically start (there are no Scratch controls).</p>
-
+<p>NOTE 2: The HTML file will be big; it will contain all the assets used in the Scratch project.<br>
+The file will include a link to a custom Scratch Virtual Machine aka the (software) engine used to run all
+Scratch projects. The engine modifications were done to minimize file size for fast downloads.
+<br>
 <hr>
 
 <form id="exportForm">
 <ul class="errorMessages"></ul>
-<p>Please enter a Project Title & Id. Example: Clicker, 283076965
+<p>Please enter a Project Title & Id. &nbsp; Example: Clicker, 283076965
 <p><label for="title">Title: </label> <input type="text" id="title" placeholder="Project title - example Clicker" pattern="[a-zA-Z0-9]+" minlength="1" maxlength="20" size="35" required /> <small><i>* required - Text Title to display in the page tab</i></small> </p>
-<p><label for="id">ID: &nbsp; </label> <input type="text" id="id" placeholder="Project ID - example 283076965" pattern="[0-9]{9}" minlength="9" maxlength="9" size="35" required /> <small><i>* required - Number ID of the Scratch project</i></small> </p>
+<p><label for="id" style="padding-right:14px">ID: </label> <input type="text" id="id" placeholder="Project ID - example 283076965" pattern="[0-9]{9}" minlength="9" maxlength="9" size="35" required /> <small><i>* required - Number ID of the Scratch project</i></small> </p>
 <input type=reset value="Clear Form" onClick="window.location.reload()">
 <input type="submit" id="load-all" value="ExportMe">
 <p>
-</form>
 <textarea style="max-width: 98%; max-height: 200px;" id="error" rows="8" cols="55" placeholder="Tool feedback will go here" readonly></textarea>
-<br>
+</form>
+<p>
 
-<hr>
+<hr />
 
 <p>
 Inspired by SheepMaker & Jeulibre. For technical details, view <a target="_blank" href="https://github.com/ottograjeda/public_ticket.534">Github Repo</a>.
@@ -176,7 +179,7 @@ function downloadAsHTML(id, {title = 'Project', userId = 'ExportedFile', noVM = 
   console.log('on press - call me pre ' +callMe)
   callMe = 'yes'
   console.log('on press - call me post ' +callMe)
-  wrapperCallMe(callMe);
+  //wrapperCallMe(callMe);
   return runBenchmark(id).then(({assets, projectJSON}) => {
     log('Getting assets...');
     return Promise.all([
