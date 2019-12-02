@@ -4,10 +4,11 @@ Custom Scratch Virtual Machine created to minimize file size.
 Smaller file size = better UX = Happy Users
 
 Files 
-* scratch-vm-jeulibre.js + scratch-vm-sheepmaker.min.js provided as references
-* scratch-vm-exportMe.min.js = file getter (used only @ index.html)
-* scratch-vm-exportMe.raw.js = file getter with comments (for dev)
+* scratch-storage.min.js = normal build file @ playground
 * scratch-vm-otto.min.js = scratch vm for exported projects
+* scratch-vm-exportMe.min.js = file getter (used only @ index.html)
+* scratch-vm-exportMe.raw.js = file getter with comments (for deveveloper)
+* scratch-vm-jeulibre.js + scratch-vm-sheepmaker.min.js provided as references
 
 ###############################################################################
 
