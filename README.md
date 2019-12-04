@@ -11,7 +11,7 @@ I have 2 creative kids & a crafty wife; they asked if we, as a family, could cre
 Installation
 ============
 This is not a *normal* repo. If you are a developer, you can use the following
-* the games are [here](https://github.com/ottograjeda/public_ticket.534/tree/master/src_games)
+* the [games](https://github.com/ottograjeda/public_ticket.534/tree/master/src_games)
 * [pre-built public files](https://github.com/ottograjeda/public_ticket.534/tree/master/public)
 * source files for [public/index](https://github.com/ottograjeda/public_ticket.534/tree/master/src_exportMe/for_index)
 * source files for the exported [template file](https://github.com/ottograjeda/public_ticket.534/tree/master/src_exportMe/for_template)
