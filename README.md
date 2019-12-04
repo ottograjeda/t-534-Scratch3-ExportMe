@@ -22,7 +22,7 @@ Demo & Animated GIFs
 ===========
 * [Live Demo](https://t-534-game.web.app/) at [Firebase Hosting](https://firebase.google.com/docs/hosting)     
 * [Google PageSpeed Analysis](https://developers.google.com/speed/pagespeed/insights/?url=https%3A%2F%2Ft-534-game.web.app%2F&tab=desktop) for the tool (this tool is a desktop tool)    
-**Note** Mobile devices can load the tool but the export function will not work due to [compatability issues](https://github.com/rndme/download/issues).     
+**Note** Mobile devices can load the tool but the export function will not work due to [compatibility issues](https://github.com/rndme/download/issues).     
 
 ![Animated GIF - Game 1 Export + Test](https://github.com/ottograjeda/public_ticket.534/blob/master/_docs/ezgif-720_web_clickerballoon.gif)
 ![Animated GIF - Game 2 Export + test](https://github.com/ottograjeda/public_ticket.534/blob/master/_docs/ezgif-720_web_flakcannon.gif)
