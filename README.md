@@ -24,14 +24,22 @@ Demo & Animated GIFs
 * [Google PageSpeed Analysis](https://developers.google.com/speed/pagespeed/insights/?url=https%3A%2F%2Ft-534-game.web.app%2F&tab=desktop) for the tool (this tool is a desktop tool)    
 **Note** Mobile devices can load the tool but the export function will not work due to [compatibility issues](https://github.com/rndme/download/issues).     
 
-Game 1 Export + Test
+Game 1 Export + Test: Clicker Balloon
 ![Animated GIF - Game 1 Export + Test](https://github.com/ottograjeda/public_ticket.534/blob/master/_docs/ezgif-720_web_clickerballoon.gif)
 
-Game 2 Export + test
+Game 2 Export + test: Flak Cannon
 ![Animated GIF - Game 2 Export + test](https://github.com/ottograjeda/public_ticket.534/blob/master/_docs/ezgif-720_web_flakcannon.gif)
+
+iOS Game 1 Test: Clicker Balloon
 ![Animated GIF - iOS Game 1 Test](https://github.com/ottograjeda/public_ticket.534/blob/master/_docs/ezgif-720_ios_clickerballoon.gif)
+
+iOS Game 2 Test: Flak Cannon
 ![Animated GIF - iOS Game 2 Test](https://github.com/ottograjeda/public_ticket.534/blob/master/_docs/ezgif-720_ios_flakcannon.gif)
+
+Android Game 1 Test: Clicker Balloon
 ![Animated GIF - Android Game 1 Test](https://github.com/ottograjeda/public_ticket.534/blob/master/_docs/ezgif-720_android_clickerballoon.gif)
+
+Android Game 2 Test: Flak Cannon
 ![Animated GIF - Android Game 2 Test](https://github.com/ottograjeda/public_ticket.534/blob/master/_docs/ezgif-720_android_flakcannon.gif)
 
 Notes - Development
