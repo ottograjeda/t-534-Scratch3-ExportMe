@@ -3,7 +3,7 @@
 //*    This is a PUBLIC Repo. See MIT License below.                                             */
 //*                                                                                              */
 //*    Any OLD code is 3rd party copyright. See documentation as needed.                         */
-//*    Any NEW code is Copyright (c) 2019 Otto Grajeda. All rights reserved.                     */
+//*    Any NEW code is Copyright (c) 2019-2020 Otto Grajeda. All rights reserved.                */
 //*                                                                                              */
 //*    NOTE 1: Code is NOT Production Ready.                                                     */
 //*    NOTE 2: For questions, please contact ottograjeda@gmail.com .                             */
